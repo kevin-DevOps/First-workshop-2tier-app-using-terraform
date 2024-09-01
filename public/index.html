@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.133.1">
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Two-Tier Architecture in AWS using Terraform :: Two-Tier Architecture in AWS using Terraform</title>
+
+    
+    <link href="/css/nucleus.css?1725202854" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1725202854" rel="stylesheet">
+    <link href="/css/hybrid.css?1725202854" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1725202854" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1725202854" rel="stylesheet">
+    <link href="/css/auto-complete.css?1725202854" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1725202854" rel="stylesheet">
+    <link href="/css/theme.css?1725202854" rel="stylesheet">
+    <link href="/css/tabs.css?1725202854" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1725202854" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1725202854"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1725202854"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1725202854"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1725202854"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-one/" title="Overview" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-one/">
+          <b>1. </b>Overview
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-second/" title="Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-second/">
+          <b>2. </b>Terraform
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-a/" title="Create provider.tf file" class="dd-item ">
+        <a href="/level-second/page-2-a/">
+        <b>2.1 </b>Create provider.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-b/" title="Create network resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-b/">
+        <b>2.2 </b>Create network resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-c/" title="Create security resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-c/">
+        <b>2.3 </b>Create security resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-d/" title="Create ec2-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-d/">
+        <b>2.4 </b>Create ec2-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-e/" title="Create db-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-e/">
+        <b>2.5 </b>Create db-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-f/" title="Let&#39;s deploy!" class="dd-item ">
+        <a href="/level-second/page-2-f/">
+        <b>2.6 </b>Let&#39;s deploy!
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-three/" title="Go to the AWS console and verify" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-three/">
+          <b>3. </b>Go to the AWS console and verify
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-four/" title="Clean up resource" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-four/">
+          <b>4. </b>Clean up resource
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-five/" title="Closing Remarks: Your Journey with AWS and Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-five/">
+          <b>5. </b>Closing Remarks: Your Journey with AWS and Terraform
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+
+        
+
+<span id="sidebar-toggle-span">
+<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
+</span>
+
+           
+	
+	<h1><strong>Deploying a Two-Tier Architecture using Terraform</strong></h1>
+	<img src="/images/architecture.png">
+	<p>Welcome to the Guide on Deploying a Two-Tier Architecture in AWS using Terraform
+
+		Are you ready to take your cloud infrastructure skills to the next level? This comprehensive guide will walk you through the process of deploying a robust two-tier architecture in AWS using Terraform. Whether you're a seasoned cloud engineer or just starting out, this guide offers valuable insights and hands-on experience that will enhance your understanding of infrastructure as code (IaC) and cloud architecture.
+		
+		What You Will Learn
+		Introduction to Two-Tier Architecture: Understand the fundamentals of two-tier architecture, its components, and how it benefits modern applications.
+		
+		AWS Services Overview: Gain a deeper understanding of the AWS services involved, such as EC2, RDS, VPC, and how they interact to create a scalable, secure architecture.
+		
+		Terraform Basics: Learn the basics of Terraform, including how to write configurations, manage resources, and automate your infrastructure deployment.
+		
+		Step-by-Step Deployment: Follow a detailed, step-by-step process to set up your two-tier architecture, complete with code examples, explanations, and best practices.
+		
+		Troubleshooting and Tips: Get guidance on common issues, troubleshooting tips, and optimization techniques to ensure a smooth deployment experience.</p>
+	
+  
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+		
+			<a class="nav nav-next" href="/level-one/" title="Overview" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1725202854"></script>
+    <script src="/js/jquery.sticky.js?1725202854"></script>
+    <script src="/js/featherlight.min.js?1725202854"></script>
+    <script src="/js/highlight.pack.js?1725202854"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1725202854"></script>
+    <script src="/js/learn.js?1725202854"></script>
+    <script src="/js/hugo-learn.js?1725202854"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1725202854"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
+

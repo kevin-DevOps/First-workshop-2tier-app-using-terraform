@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.133.1">
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Go to the AWS console and verify :: Two-Tier Architecture in AWS using Terraform</title>
+
+    
+    <link href="/css/nucleus.css?1725202854" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1725202854" rel="stylesheet">
+    <link href="/css/hybrid.css?1725202854" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1725202854" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1725202854" rel="stylesheet">
+    <link href="/css/auto-complete.css?1725202854" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1725202854" rel="stylesheet">
+    <link href="/css/theme.css?1725202854" rel="stylesheet">
+    <link href="/css/tabs.css?1725202854" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1725202854" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1725202854"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/level-three/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1725202854"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1725202854"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1725202854"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-one/" title="Overview" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-one/">
+          <b>1. </b>Overview
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-second/" title="Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-second/">
+          <b>2. </b>Terraform
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-a/" title="Create provider.tf file" class="dd-item ">
+        <a href="/level-second/page-2-a/">
+        <b>2.1 </b>Create provider.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-b/" title="Create network resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-b/">
+        <b>2.2 </b>Create network resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-c/" title="Create security resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-c/">
+        <b>2.3 </b>Create security resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-d/" title="Create ec2-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-d/">
+        <b>2.4 </b>Create ec2-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-e/" title="Create db-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-e/">
+        <b>2.5 </b>Create db-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-f/" title="Let&#39;s deploy!" class="dd-item ">
+        <a href="/level-second/page-2-f/">
+        <b>2.6 </b>Let&#39;s deploy!
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-three/" title="Go to the AWS console and verify" class="dd-item
+        
+        active
+        
+        ">
+      <a href="/level-three/">
+          <b>3. </b>Go to the AWS console and verify
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-four/" title="Clean up resource" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-four/">
+          <b>4. </b>Clean up resource
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-five/" title="Closing Remarks: Your Journey with AWS and Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-five/">
+          <b>5. </b>Closing Remarks: Your Journey with AWS and Terraform
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>Two-Tier Architecture in AWS using Terraform</a> > Go to the AWS console and verify
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+
+	<h1 id="go-to-the-aws-console-and-verify"><strong>Go to the AWS console and verify</strong></h1>
+<h2 id="1-vpc-and-network-resources">1 .VPC and Network resources</h2>
+<p><img src="/images/0006-tf.png" alt="Logo của Hugo">
+You will see VPC created from terraform</p>
+<p><img src="/images/0006-vpc.png" alt="Logo của Hugo">
+vpc, public and private subnets,route table, and internet gateway</p>
+<h2 id="2-ec2-instances">2. EC2 instances</h2>
+<p><img src="/images/0005-ec2.png" alt="Logo của Hugo">
+web server 1 and web server 2 instances</p>
+<h2 id="3-load-balancer">3. Load Balancer</h2>
+<p><img src="/images/0009-alb.png" alt="Logo của Hugo">
+application load balancer</p>
+<h2 id="4-target-group">4. Target Group</h2>
+<p><img src="/images/0009-target.png" alt="Logo của Hugo">
+Target Group and targets are healthy</p>
+<h2 id="5-rds-mysql-database">5. RDS MYSQL Database</h2>
+<p><img src="/images/0010-db.png" alt="Logo của Hugo">
+RDS MYSQL Database</p>
+<h2 id="6-ec2-nginx-web-server-is-also-working-fine">6. EC2 NGINX web server is also working fine</h2>
+<h4 id="web-server-1">web server-1</h4>
+<p><img src="/images/0013-nginx.png" alt="Logo của Hugo">
+web server 1 nginx web page</p>
+<h4 id="web-server-2">web server-2</h4>
+<p><img src="/images/0013-nginx.png" alt="Logo của Hugo">
+web server 2 nginx web page</p>
+<h2 id="7-security-groups">7. Security Groups</h2>
+<p><img src="/images/0011-sg.png" alt="Logo của Hugo"></p>
+<p>ec2 and alb Security Groups</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+            </div> 
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/level-second/page-2-f/" title="Let&#39;s deploy!"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/level-four/" title="Clean up resource" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1725202854"></script>
+    <script src="/js/jquery.sticky.js?1725202854"></script>
+    <script src="/js/featherlight.min.js?1725202854"></script>
+    <script src="/js/highlight.pack.js?1725202854"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1725202854"></script>
+    <script src="/js/learn.js?1725202854"></script>
+    <script src="/js/hugo-learn.js?1725202854"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1725202854"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>

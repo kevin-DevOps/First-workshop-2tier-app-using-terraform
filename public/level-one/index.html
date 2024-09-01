@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.133.1">
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Overview :: Two-Tier Architecture in AWS using Terraform</title>
+
+    
+    <link href="/css/nucleus.css?1725202854" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1725202854" rel="stylesheet">
+    <link href="/css/hybrid.css?1725202854" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1725202854" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1725202854" rel="stylesheet">
+    <link href="/css/auto-complete.css?1725202854" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1725202854" rel="stylesheet">
+    <link href="/css/theme.css?1725202854" rel="stylesheet">
+    <link href="/css/tabs.css?1725202854" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1725202854" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1725202854"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/level-one/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1725202854"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1725202854"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1725202854"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-one/" title="Overview" class="dd-item
+        
+        active
+        
+        ">
+      <a href="/level-one/">
+          <b>1. </b>Overview
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-second/" title="Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-second/">
+          <b>2. </b>Terraform
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-a/" title="Create provider.tf file" class="dd-item ">
+        <a href="/level-second/page-2-a/">
+        <b>2.1 </b>Create provider.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-b/" title="Create network resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-b/">
+        <b>2.2 </b>Create network resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-c/" title="Create security resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-c/">
+        <b>2.3 </b>Create security resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-d/" title="Create ec2-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-d/">
+        <b>2.4 </b>Create ec2-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-e/" title="Create db-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-e/">
+        <b>2.5 </b>Create db-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-f/" title="Let&#39;s deploy!" class="dd-item ">
+        <a href="/level-second/page-2-f/">
+        <b>2.6 </b>Let&#39;s deploy!
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-three/" title="Go to the AWS console and verify" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-three/">
+          <b>3. </b>Go to the AWS console and verify
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-four/" title="Clean up resource" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-four/">
+          <b>4. </b>Clean up resource
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-five/" title="Closing Remarks: Your Journey with AWS and Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-five/">
+          <b>5. </b>Closing Remarks: Your Journey with AWS and Terraform
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>Two-Tier Architecture in AWS using Terraform</a> > Overview
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+
+	<h1 id="deploying-fcj-management-application-with-auto-scaling-group"><strong>Deploying FCJ Management Application with Auto Scaling Group</strong></h1>
+<p>What is AWS Two-Tier Architecture?
+AWS two-tier architecture is a common deployment pattern used for web applications in the cloud. It consists of two main components or tiers:</p>
+<h2 id="1web-server-tier">1.Web Server Tier:</h2>
+<p>This tier is responsible for serving web pages and handling user requests. It typically includes load balancers, web servers, and application servers. Let’s take a closer look at each of these components:
+Load Balancers: A load balancer distributes incoming traffic to multiple web servers, improving the performance and availability of the application. AWS provides two types of load balancers: Application Load Balancers and Network Load Balancers.
+Web Servers: Web servers are responsible for serving web pages to the user’s browser. They can handle static content such as HTML, CSS, and JavaScript. Web servers can also execute dynamic content, such as PHP, Python, or Ruby on Rails.</p>
+<h2 id="2database-tier">2.Database Tier:</h2>
+<p>This tier is responsible for storing and managing data used by the web application. It typically includes a database server and associated storage. Let’s take a closer look at each of these components:</p>
+<h2 id="3database-server">3.Database Server:</h2>
+<p>A database server stores and manages data used by the application. AWS provides a variety of database options, including Amazon Relational Database Service (RDS), Amazon DynamoDB, and Amazon Aurora.
+Storage: Storage is used by the database server to store data. AWS provides various storage options, such as Amazon Elastic Block Store (EBS), Amazon Simple Storage Service (S3), and Amazon Elastic File System (EFS).
+The two tiers are separated by a firewall or security group to restrict access to the database server from the internet. This architecture is highly scalable, and fault-tolerant, and provides a separation of concerns between the web and database tiers.</p>
+<h2 id="why-do-we-use-two-tier-architecture">Why do We use Two-Tier Architecture?</h2>
+<p>There are several reasons why AWS two-tier architecture is a popular choice for deploying web applications in the cloud:</p>
+<h2 id="1scalability">1.Scalability:</h2>
+<p>The two-tier architecture allows each tier to scale independently. For example, if the web server tier needs to handle more traffic, additional web server instances can be added, and the load balancer can distribute traffic among them. If the database tier needs to handle more data, additional storage or database instances can be added.</p>
+<h2 id="2fault-tolerance">2.Fault-tolerance:</h2>
+<p>The two-tier architecture is designed to be fault-tolerant, with multiple web server and database server instances providing redundancy. If one server or instance fails, the load balancer can route traffic to other instances, maintaining application availability.</p>
+<h2 id="3security">3.Security:</h2>
+<p>The separation of the web server and database tiers allows for better security by restricting access to the database from the internet. By using a firewall or security group to separate the tiers, access to the database can be restricted to only authorized sources.</p>
+<h2 id="4performance">4.Performance:</h2>
+<p>he use of load balancers in the web server tier can improve performance by distributing traffic among multiple web server instances. This can improve the responsiveness of the application and help to reduce latency.
+Overall, AWS two-tier architecture provides a flexible and scalable approach to deploying web applications in the cloud, while also providing improved performance, fault tolerance, and security.</p>
+<p>What is the difference between AWS Two-Tier and Three-Tire architecture?
+The terms “Two-Tier” and “Three-Tier” refer to the architecture of an application or system. A tier is a logical or functional layer that provides a specific set of services or functionality.</p>
+<p>In a Two-tier architecture, there are two tiers or layers: the client layer and the server layer. The client layer is typically a web or mobile application that communicates directly with the server layer, which consists of a database and application server.</p>
+<p>In a Three-Tier architecture, there are three tiers or layers: the client layer, the application layer, and the database layer. The client layer communicates with the application layer, which contains the application server and business logic, and the application layer communicates with the database layer, which contains the database.</p>
+<p>The main difference between Thw-Tier and Three-Tier architecture is the addition of an application layer in the latter. The application layer provides an additional level of abstraction between the client and the database, which can improve the scalability, security, and maintainability of the system.</p>
+<p>In a Three-Tier architecture, the application layer can also provide load balancing and fault tolerance capabilities, which can help ensure the high availability of the system. However, a Three-Tier architecture can be more complex and expensive to implement compared to a Two-Tier architecture.</p>
+<h2 id="creating-a-two-tier-architecture-in-aws-using-terraform">Creating a Two-Tier Architecture in AWS Using Terraform:</h2>
+<p>In this article, I will use Terraform to create a two-tier architecture using AWS services. A two-tier architecture consists of a client layer and a database layer. Terraform is an open-source infrastructure as a code tool. With Terraform we can deploy cloud services by declaring the resources in a file.</p>
+<p>Two-Tier Architecture:
+<img src="/images/architecture.png" alt="Logo của Hugo"></p>
+<h2 id="this-two-tier-architecture-will-contain-the-following-components">This two-tier architecture will contain the following components:</h2>
+<p>Deploy a VPC with CIDR 10.0.0.0/16
+Within the VPC we will have 2 public subnets with CIDR 10.0.0.0/18 and 10.0.64.0/18. Each public subnet will be in a different Availability Zone for high availability
+Create 2 private subnets with CIDR ‘10.0.128.0/18’ and ‘10.0.192.0/18’ and each will be in a different Availability Zone
+Deploy RDS MySQL instance.
+An Application load balancer that will direct traffic to the public subnets.
+Deploy one EC2 instance in each public subnet for high availability.
+Internet Gateway and Elastic IPs for EC2 instance.</p>
+<h2 id="prerequisites">Prerequisites:</h2>
+<p>Install Terraform CLI
+Install AWS CLI
+AWS Account
+Code Editor (I used VS Code for this deployment)
+Reference: <a href="https://registry.terraform.io/">https://registry.terraform.io/</a></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+            </div> 
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/" title="Two-Tier Architecture in AWS using Terraform"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/level-second/" title="Terraform" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1725202854"></script>
+    <script src="/js/jquery.sticky.js?1725202854"></script>
+    <script src="/js/featherlight.min.js?1725202854"></script>
+    <script src="/js/highlight.pack.js?1725202854"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1725202854"></script>
+    <script src="/js/learn.js?1725202854"></script>
+    <script src="/js/hugo-learn.js?1725202854"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1725202854"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>

@@ -1,0 +1,4 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Two-Tier Architecture in AWS using Terraform'
+theme = "hugo-theme-learn-master"

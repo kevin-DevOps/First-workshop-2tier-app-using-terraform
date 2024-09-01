@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.133.1">
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Create ec2-resources.tf file :: Two-Tier Architecture in AWS using Terraform</title>
+
+    
+    <link href="/css/nucleus.css?1725202854" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1725202854" rel="stylesheet">
+    <link href="/css/hybrid.css?1725202854" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1725202854" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1725202854" rel="stylesheet">
+    <link href="/css/auto-complete.css?1725202854" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1725202854" rel="stylesheet">
+    <link href="/css/theme.css?1725202854" rel="stylesheet">
+    <link href="/css/tabs.css?1725202854" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1725202854" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1725202854"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/level-second/page-2-d/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1725202854"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1725202854"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1725202854"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-one/" title="Overview" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-one/">
+          <b>1. </b>Overview
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-second/" title="Terraform" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/level-second/">
+          <b>2. </b>Terraform
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-a/" title="Create provider.tf file" class="dd-item ">
+        <a href="/level-second/page-2-a/">
+        <b>2.1 </b>Create provider.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-b/" title="Create network resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-b/">
+        <b>2.2 </b>Create network resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-c/" title="Create security resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-c/">
+        <b>2.3 </b>Create security resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-d/" title="Create ec2-resources.tf file" class="dd-item active">
+        <a href="/level-second/page-2-d/">
+        <b>2.4 </b>Create ec2-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-e/" title="Create db-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-e/">
+        <b>2.5 </b>Create db-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-f/" title="Let&#39;s deploy!" class="dd-item ">
+        <a href="/level-second/page-2-f/">
+        <b>2.6 </b>Let&#39;s deploy!
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-three/" title="Go to the AWS console and verify" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-three/">
+          <b>3. </b>Go to the AWS console and verify
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-four/" title="Clean up resource" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-four/">
+          <b>4. </b>Clean up resource
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-five/" title="Closing Remarks: Your Journey with AWS and Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-five/">
+          <b>5. </b>Closing Remarks: Your Journey with AWS and Terraform
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Two-Tier Architecture in AWS using Terraform</a> > <a href='/level-second/'>Terraform</a> > Create ec2-resources.tf file
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+<h2 id="4-create-ec2-resourcestf-file">4. Create ec2-resources.tf file</h2>
+<p>The ec2-resources.tf file is a Terraform configuration file that is responsible for defining the resources required to provision EC2 instances in your AWS environment. This file type includes the configuration of two EC2 instances, each with an NGINX web server installed, as well as the allocation of two Elastic IPs for those instances.</p>
+<p>The EC2 instances defined in the ec2-resources.tf file may be configured with specific instance types, depending on the requirements of your application. Additionally, the file may include the definition of the AMI used to launch the instances, which specifies the operating system and any additional software or configurations required to run your application.</p>
+<p>Once the EC2 instances are defined, the ec2-resources.tf file may allocate two Elastic IPs, which are used to provide static public IP addresses for your EC2 instances. This is useful for scenarios where you need a fixed IP address for your instances, such as for setting up DNS records or for firewall configurations.</p>
+<p>Finally, the ec2-resources.tf file may configure the EC2 instances with the NGINX web server, which allows the instances to serve web pages to users. This configuration may include the installation of the NGINX software, as well as any required configurations for serving web pages.</p>
+<p>Overall, the ec2-resources.tf file is an essential part of any Terraform project that requires EC2 instances. Properly configuring this file ensures that your instances are provisioned with the correct configurations, software, and network settings and that they can be accessed from the internet with a static IP address.</p>
+<pre><code># Public subnet EC2 instance 1
+resource &quot;aws_instance&quot; &quot;two-tier-web-server-1&quot; {
+ami                         = &quot;ami-0d07675d294f17973&quot;
+instance_type               = &quot;t2.micro&quot;
+subnet_id                   = aws_subnet.two-tier-pub-sub-1.id
+associate_public_ip_address = true
+vpc_security_group_ids      = [aws_security_group.two-tier-ec2-sg.id]
+key_name                    = &quot;kevinaws-ecs&quot;
+tags = {
+    Name = &quot;two-tier-web-server-1&quot;
+}
+user_data = &lt;&lt;-EOF
+            #!/bin/bash
+            sudo yum update -y
+            sudo amazon-linux-extras install nginx1 -y || sudo yum install nginx -y
+            sudo systemctl enable nginx
+            sudo systemctl start nginx
+            EOF
+
+}
+
+resource &quot;aws_instance&quot; &quot;two-tier-web-server-2&quot; {
+ami                         = &quot;ami-0d07675d294f17973&quot;
+instance_type               = &quot;t2.micro&quot;
+subnet_id                   = aws_subnet.two-tier-pub-sub-2.id
+associate_public_ip_address = true
+vpc_security_group_ids      = [aws_security_group.two-tier-ec2-sg.id]
+key_name                    = &quot;kevinaws-ecs&quot;
+tags = {
+    Name = &quot;two-tier-web-server-2&quot;
+}
+
+user_data = &lt;&lt;-EOF
+            #!/bin/bash
+            sudo yum update -y
+            sudo amazon-linux-extras install nginx1 -y || sudo yum install nginx -y
+            sudo systemctl enable nginx
+            sudo systemctl start nginx
+            EOF
+}
+
+
+# EIP
+resource &quot;aws_eip&quot; &quot;two-tier-web-server-1-eip&quot; {
+    domain = &quot;vpc&quot;
+depends_on = [aws_internet_gateway.two-tier-igw]
+instance = aws_instance.two-tier-web-server-1.id
+tags = {
+    Name = &quot;two-tier-eip-1&quot;
+}
+}
+
+resource &quot;aws_eip&quot; &quot;two-tier-web-server-2-eip&quot; {
+    domain = &quot;vpc&quot;
+depends_on = [aws_internet_gateway.two-tier-igw]
+instance = aws_instance.two-tier-web-server-2.id
+tags = {
+    Name = &quot;two-tier-eip-2&quot;
+  }
+}
+</code></pre>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+            </div> 
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/level-second/page-2-c/" title="Create security resources.tf file"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/level-second/page-2-e/" title="Create db-resources.tf file" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1725202854"></script>
+    <script src="/js/jquery.sticky.js?1725202854"></script>
+    <script src="/js/featherlight.min.js?1725202854"></script>
+    <script src="/js/highlight.pack.js?1725202854"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1725202854"></script>
+    <script src="/js/learn.js?1725202854"></script>
+    <script src="/js/hugo-learn.js?1725202854"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1725202854"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
+

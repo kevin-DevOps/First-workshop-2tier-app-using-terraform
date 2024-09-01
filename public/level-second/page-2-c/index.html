@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.133.1">
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Create security resources.tf file :: Two-Tier Architecture in AWS using Terraform</title>
+
+    
+    <link href="/css/nucleus.css?1725202854" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1725202854" rel="stylesheet">
+    <link href="/css/hybrid.css?1725202854" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1725202854" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1725202854" rel="stylesheet">
+    <link href="/css/auto-complete.css?1725202854" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1725202854" rel="stylesheet">
+    <link href="/css/theme.css?1725202854" rel="stylesheet">
+    <link href="/css/tabs.css?1725202854" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1725202854" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1725202854"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/level-second/page-2-c/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1725202854"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1725202854"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1725202854"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-one/" title="Overview" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-one/">
+          <b>1. </b>Overview
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-second/" title="Terraform" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/level-second/">
+          <b>2. </b>Terraform
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-a/" title="Create provider.tf file" class="dd-item ">
+        <a href="/level-second/page-2-a/">
+        <b>2.1 </b>Create provider.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-b/" title="Create network resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-b/">
+        <b>2.2 </b>Create network resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-c/" title="Create security resources.tf file" class="dd-item active">
+        <a href="/level-second/page-2-c/">
+        <b>2.3 </b>Create security resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-d/" title="Create ec2-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-d/">
+        <b>2.4 </b>Create ec2-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-e/" title="Create db-resources.tf file" class="dd-item ">
+        <a href="/level-second/page-2-e/">
+        <b>2.5 </b>Create db-resources.tf file
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/level-second/page-2-f/" title="Let&#39;s deploy!" class="dd-item ">
+        <a href="/level-second/page-2-f/">
+        <b>2.6 </b>Let&#39;s deploy!
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-three/" title="Go to the AWS console and verify" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-three/">
+          <b>3. </b>Go to the AWS console and verify
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-four/" title="Clean up resource" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-four/">
+          <b>4. </b>Clean up resource
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/level-five/" title="Closing Remarks: Your Journey with AWS and Terraform" class="dd-item
+        
+        
+        
+        ">
+      <a href="/level-five/">
+          <b>5. </b>Closing Remarks: Your Journey with AWS and Terraform
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Two-Tier Architecture in AWS using Terraform</a> > <a href='/level-second/'>Terraform</a> > Create security resources.tf file
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+<h2 id="3-create-security-resourcestf-file">3. Create security resources.tf file</h2>
+<p>In addition to the network_resources.tf file, another essential file in Terraform is the security_resources.tf file. This file is responsible for configuring the security measures for your application, such as defining security groups for both EC2 instances and load balancers.</p>
+<p>Within the security_resources.tf file, you may define the configuration of a security group for your EC2 instance. This security group may specify which ports are open and which protocols are allowed for inbound and outbound traffic. For example, the EC2 security group may be configured to allow inbound traffic on ports 80 and 22, which correspond to HTTP and SSH traffic, respectively. This ensures that your EC2 instances can be accessed from the internet for web traffic and from your local machine for SSH access.</p>
+<p>The security_resources.tf file may also include the configuration of a security group for your load balancer. This security group specifies the rules that allow traffic to flow from the load balancer to the EC2 instances within the VPC. These rules may include which ports are open and which protocols are allowed for inbound and outbound traffic.</p>
+<p>Properly configuring the security_resources.tf file is crucial for ensuring that your application is secure and protected from unauthorized access. By defining security groups for your EC2 instances and load balancers, you can control the flow of traffic both within and outside of the VPC. This helps to minimize the risk of security breaches and ensures that your application is compliant with any relevant regulations or standards.</p>
+<pre><code># Security Group
+resource &quot;aws_security_group&quot; &quot;two-tier-ec2-sg&quot; {
+name        = &quot;two-tier-ec2-sg&quot;
+description = &quot;Allow traffic from VPC&quot;
+vpc_id      = aws_vpc.two-tier-vpc.id
+depends_on = [
+    aws_vpc.two-tier-vpc
+]
+
+ingress {
+    from_port = &quot;0&quot;
+    to_port   = &quot;0&quot;
+    protocol  = &quot;-1&quot;
+}
+ingress {
+    from_port   = &quot;80&quot;
+    to_port     = &quot;80&quot;
+    protocol    = &quot;tcp&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+}
+ingress {
+    from_port   = &quot;22&quot;
+    to_port     = &quot;22&quot;
+    protocol    = &quot;tcp&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+}
+egress {
+    from_port   = &quot;0&quot;
+    to_port     = &quot;0&quot;
+    protocol    = &quot;-1&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+}
+
+tags = {
+    Name = &quot;two-tier-ec2-sg&quot;
+}
+}
+
+# Load balancer security group
+resource &quot;aws_security_group&quot; &quot;two-tier-alb-sg&quot; {
+name        = &quot;two-tier-alb-sg&quot;
+description = &quot;load balancer security group&quot;
+vpc_id      = aws_vpc.two-tier-vpc.id
+depends_on = [
+    aws_vpc.two-tier-vpc
+]
+
+
+ingress {
+    from_port   = &quot;0&quot;
+    to_port     = &quot;0&quot;
+    protocol    = &quot;-1&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+}
+egress {
+    from_port   = &quot;0&quot;
+    to_port     = &quot;0&quot;
+    protocol    = &quot;-1&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+}
+
+
+tags = {
+    Name = &quot;two-tier-alb-sg&quot;
+}
+}
+
+# Database tier Security gruop
+resource &quot;aws_security_group&quot; &quot;two-tier-db-sg&quot; {
+name        = &quot;two-tier-db-sg&quot;
+description = &quot;allow traffic from internet&quot;
+vpc_id      = aws_vpc.two-tier-vpc.id
+
+ingress {
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = &quot;tcp&quot;
+    security_groups = [aws_security_group.two-tier-ec2-sg.id]
+    cidr_blocks     = [&quot;0.0.0.0/0&quot;]
+}
+
+ingress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = &quot;tcp&quot;
+    security_groups = [aws_security_group.two-tier-ec2-sg.id]
+    cidr_blocks     = [&quot;10.0.0.0/16&quot;]
+}
+
+egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = &quot;-1&quot;
+    cidr_blocks = [&quot;0.0.0.0/0&quot;]
+  }
+}
+</code></pre>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+            </div> 
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/level-second/page-2-b/" title="Create network resources.tf file"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/level-second/page-2-d/" title="Create ec2-resources.tf file" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.min.js?1725202854"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1725202854"></script>
+    <script src="/js/jquery.sticky.js?1725202854"></script>
+    <script src="/js/featherlight.min.js?1725202854"></script>
+    <script src="/js/highlight.pack.js?1725202854"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1725202854"></script>
+    <script src="/js/learn.js?1725202854"></script>
+    <script src="/js/hugo-learn.js?1725202854"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1725202854"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
+

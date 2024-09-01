@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Two-Tier Architecture in AWS using Terraform</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Two-Tier Architecture in AWS using Terraform</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Sep 2024 10:12:06 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create provider.tf file</title>
+      <link>http://localhost:1313/level-second/page-2-a/</link>
+      <pubDate>Sun, 01 Sep 2024 10:12:06 +0700</pubDate>
+      <guid>http://localhost:1313/level-second/page-2-a/</guid>
+      <description>1.Create provider.tf file The provider.tf file in Terraform is a configuration file that specifies the cloud provider and its corresponding plugin that Terraform will use to manage resources in that provider.&#xA;In Terraform, a provider is a plugin that defines the set of resources and their properties that Terraform can manage in a specific cloud provider, such as AWS, Azure, Google Cloud, or others. The provider plugin is responsible for communicating with the API of the cloud provider, creating, updating, or deleting resources, and handling the authentication and access control.</description>
+    </item>
+    <item>
+      <title>Create network resources.tf file</title>
+      <link>http://localhost:1313/level-second/page-2-b/</link>
+      <pubDate>Sun, 01 Sep 2024 10:12:06 +0700</pubDate>
+      <guid>http://localhost:1313/level-second/page-2-b/</guid>
+      <description>2.Create network resources.tf file When working with Terraform, one of the most important files you’ll need to create is the network_resources.tf file. This file typically contains the configuration for the network infrastructure that your application will require to function properly. This can include the creation of a Virtual Private Cloud (VPC), which serves as an isolated network environment for your application, as well as the configuration of subnets, an internet gateway, route tables, and load balancers.</description>
+    </item>
+    <item>
+      <title>Create security resources.tf file</title>
+      <link>http://localhost:1313/level-second/page-2-c/</link>
+      <pubDate>Sun, 01 Sep 2024 10:12:06 +0700</pubDate>
+      <guid>http://localhost:1313/level-second/page-2-c/</guid>
+      <description>3. Create security resources.tf file In addition to the network_resources.tf file, another essential file in Terraform is the security_resources.tf file. This file is responsible for configuring the security measures for your application, such as defining security groups for both EC2 instances and load balancers.&#xA;Within the security_resources.tf file, you may define the configuration of a security group for your EC2 instance. This security group may specify which ports are open and which protocols are allowed for inbound and outbound traffic.</description>
+    </item>
+    <item>
+      <title>Create ec2-resources.tf file</title>
+      <link>http://localhost:1313/level-second/page-2-d/</link>
+      <pubDate>Sun, 01 Sep 2024 10:12:06 +0700</pubDate>
+      <guid>http://localhost:1313/level-second/page-2-d/</guid>
+      <description>4. Create ec2-resources.tf file The ec2-resources.tf file is a Terraform configuration file that is responsible for defining the resources required to provision EC2 instances in your AWS environment. This file type includes the configuration of two EC2 instances, each with an NGINX web server installed, as well as the allocation of two Elastic IPs for those instances.&#xA;The EC2 instances defined in the ec2-resources.tf file may be configured with specific instance types, depending on the requirements of your application.</description>
+    </item>
+    <item>
+      <title>Create db-resources.tf file</title>
+      <link>http://localhost:1313/level-second/page-2-e/</link>
+      <pubDate>Sun, 01 Sep 2024 10:12:06 +0700</pubDate>
+      <guid>http://localhost:1313/level-second/page-2-e/</guid>
+      <description>5. Create db-resources.tf file The db-resources.tf file in Terraform is responsible for configuring the resources required to provision an RDS database in your AWS environment. This file typically includes the configuration of a MySQL RDS database, including the definition of the database instance class, allocated storage, and the desired backup window.&#xA;The RDS database defined in the db-resources.tf file may be configured with specific database instance classes and storage types, depending on the requirements of your application.</description>
+    </item>
+    <item>
+      <title>Let&#39;s deploy!</title>
+      <link>http://localhost:1313/level-second/page-2-f/</link>
+      <pubDate>Sun, 01 Sep 2024 10:12:06 +0700</pubDate>
+      <guid>http://localhost:1313/level-second/page-2-f/</guid>
+      <description>Let&amp;rsquo;s deploy! Make sure you have already inserted your AWS credentials and are operating from the root directory before starting these Terraform commands.&#xA;1. terraform init The terraform init the command is used to initialize a new or existing Terraform configuration. This command downloads the required provider plugins and sets up the backend for storing state. terraform init&#xA;2. terraform plan The terraform plan the command is used to create an execution plan for the Terraform configuration.</description>
+    </item>
+  </channel>
+</rss>
